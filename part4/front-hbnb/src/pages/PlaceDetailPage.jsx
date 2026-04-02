@@ -177,11 +177,11 @@ export default function PlaceDetailPage() {
   const imageUrl = `https://picsum.photos/1200/400?random=${imageId}`;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
       <div className="max-w-7xl mx-auto px-4">
         {/* Place Header */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-          <div className="h-96 bg-gray-200 overflow-hidden relative">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-8">
+          <div className="h-96 bg-gray-200 dark:bg-gray-700 overflow-hidden relative">
             <img
               src={imageUrl}
               alt={place.title}
@@ -190,30 +190,30 @@ export default function PlaceDetailPage() {
           </div>
           <div className="p-8">
             <div className="flex justify-between items-start mb-4">
-              <h1 className="text-4xl font-bold">{place.title}</h1>
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">{place.title}</h1>
               {canEditPlace && (
                 <div className="flex gap-2">
                   <button
                     onClick={() => setShowPlaceFormModal(true)}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium"
+                    className="px-4 py-2 bg-violet-500 dark:bg-violet-600 text-white rounded-lg hover:bg-violet-600 dark:hover:bg-violet-700 font-medium transition"
                   >
                     Edit
                   </button>
                   <button
                     onClick={handleDeletePlace}
-                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 font-medium"
+                    className="px-4 py-2 bg-red-500 dark:bg-red-600 text-white rounded-lg hover:bg-red-600 dark:hover:bg-red-700 font-medium transition"
                   >
                     Delete
                   </button>
                 </div>
               )}
             </div>
-            <p className="text-gray-600 text-lg mb-6">{place.description}</p>
+            <p className="text-gray-600 dark:text-gray-400 text-lg mb-6">{place.description}</p>
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-lg font-bold mb-4">Details</h3>
-                <div className="space-y-2">
+                <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">Details</h3>
+                <div className="space-y-2 text-gray-900 dark:text-gray-300">
                   <p><strong>Price:</strong> ${place.price}/night</p>
                   <p><strong>Location:</strong> {place.latitude}, {place.longitude}</p>
                   {place.owner && (
@@ -223,16 +223,16 @@ export default function PlaceDetailPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold mb-4">Amenities</h3>
+                <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">Amenities</h3>
                 <div className="flex flex-wrap gap-2">
                   {amenityNames.length > 0 ? (
                     amenityNames.map((name, idx) => (
-                      <span key={idx} className="badge bg-primary text-white">
+                      <span key={idx} className="badge bg-primary dark:bg-violet-700 text-white">
                         {name}
                       </span>
                     ))
                   ) : (
-                    <p className="text-gray-500">No amenities listed</p>
+                    <p className="text-gray-500 dark:text-gray-400">No amenities listed</p>
                   )}
                 </div>
               </div>
@@ -241,12 +241,12 @@ export default function PlaceDetailPage() {
         </div>
 
         {/* Reviews Section */}
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Reviews ({reviews.length})</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Reviews ({reviews.length})</h2>
             <div className="text-right">
-              <div className="text-3xl font-bold text-primary">{avgRating}</div>
-              <div className="text-amber-600 font-semibold">Based on {reviews.length} reviews</div>
+              <div className="text-3xl font-bold text-primary dark:text-violet-400">{avgRating}</div>
+              <div className="text-amber-600 dark:text-amber-400 font-semibold">Based on {reviews.length} reviews</div>
             </div>
           </div>
 
@@ -275,17 +275,17 @@ export default function PlaceDetailPage() {
           >
             <form onSubmit={handleAddReview} className="space-y-4">
               <div>
-                <label className="block font-medium mb-2">Rating</label>
+                <label className="block font-medium mb-2 dark:text-gray-300">Rating</label>
                 <StarRating onRate={setRating} initialRating={rating} />
               </div>
 
               <div>
-                <label className="block font-medium mb-2">Your Review</label>
+                <label className="block font-medium mb-2 dark:text-gray-300">Your Review</label>
                 <textarea
                   value={reviewText}
                   onChange={(e) => setReviewText(e.target.value)}
                   placeholder="Share your experience..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-gray-100"
                   rows={4}
                   required
                 />
@@ -304,33 +304,33 @@ export default function PlaceDetailPage() {
           {/* Reviews List */}
           <div className="space-y-4">
             {reviews.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No reviews yet. Be the first!</p>
+              <p className="text-gray-500 dark:text-gray-400 text-center py-8">No reviews yet. Be the first!</p>
             ) : (
               reviews.map((review) => (
-                <div key={review.id} className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <div key={review.id} className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold">{review.user_id?.substring(0, 8) || 'User'}</span>
-                      <span className="text-amber-600 font-semibold">Rating: {review.rating}/5</span>
+                      <span className="font-semibold text-gray-900 dark:text-gray-100">{review.user_id?.substring(0, 8) || 'User'}</span>
+                      <span className="text-amber-600 dark:text-amber-400 font-semibold">Rating: {review.rating}/5</span>
                     </div>
                     {user && user.id && user.id === review.user_id && (
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEditReview(review)}
-                          className="text-blue-500 hover:text-blue-700 text-sm font-medium"
+                          className="text-violet-500 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 text-sm font-medium transition"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeleteReview(review.id)}
-                          className="text-red-500 hover:text-red-700 text-sm font-medium"
+                          className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 text-sm font-medium transition"
                         >
                           Delete
                         </button>
                       </div>
                     )}
                   </div>
-                  <p className="text-gray-700 text-sm">{review.text}</p>
+                  <p className="text-gray-700 dark:text-gray-300 text-sm">{review.text}</p>
                 </div>
               ))
             )}

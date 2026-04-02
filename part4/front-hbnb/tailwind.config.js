@@ -4,10 +4,11 @@ export default {
     "./index.html",
     "./src/**/*.{js,jsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: '#ff385c',
+        primary: '#7c3aed',
         secondary: '#222',
       },
     },

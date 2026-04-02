@@ -32,9 +32,9 @@ export default function PlacesPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
       <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-4xl font-bold mb-8">Available Places</h1>
+        <h1 className="text-4xl font-bold mb-8 dark:text-gray-100">Available Places</h1>
 
         {/* Search Bar */}
         <div className="mb-8">
@@ -43,12 +43,12 @@ export default function PlacesPage() {
             placeholder="Search places by title or description..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-6 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+            className="w-full px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-800 dark:text-gray-100"
           />
         </div>
 
         {/* Results count */}
-        <div className="text-gray-600 mb-6">
+        <div className="text-gray-600 dark:text-gray-400 mb-6">
           Showing {filteredPlaces.length} of {places.length} places
         </div>
 
@@ -57,7 +57,7 @@ export default function PlacesPage() {
           <LoadingSpinner />
         ) : filteredPlaces.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No places found matching your search</p>
+            <p className="text-gray-500 dark:text-gray-400 text-lg">No places found matching your search</p>
           </div>
         ) : (
           /* Grid of Places */

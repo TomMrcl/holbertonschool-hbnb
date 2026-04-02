@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -11,6 +12,11 @@ import PlaceDetailPage from './pages/PlaceDetailPage';
 import CreatePlacePage from './pages/CreatePlacePage';
 
 function App() {
+  useEffect(() => {
+    // Force dark mode
+    document.documentElement.classList.add('dark');
+  }, []);
+
   return (
     <Router>
       <AuthProvider>

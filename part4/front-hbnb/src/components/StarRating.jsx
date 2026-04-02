@@ -24,7 +24,7 @@ export default function StarRating({ onRate, initialRating = 0 }) {
           className={`w-10 h-10 rounded-full text-sm font-bold transition ${
             star <= (hovered || rating)
               ? 'bg-amber-500 text-white'
-              : 'bg-gray-300 text-gray-600'
+              : 'bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-400'
           }`}
         >
           {star}

@@ -20,8 +20,8 @@ export default function ToastContainer({ toasts }) {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className={`px-4 py-3 rounded-lg text-white font-medium animate-fade-in ${
-            toast.type === 'error' ? 'bg-red-500' : 'bg-green-500'
+          className={`px-4 py-3 rounded-lg text-white font-medium animate-fade-in dark:shadow-lg ${
+            toast.type === 'error' ? 'bg-red-500 dark:bg-red-600' : 'bg-green-500 dark:bg-green-600'
           }`}
         >
           {toast.message}

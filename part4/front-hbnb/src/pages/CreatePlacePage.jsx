@@ -106,31 +106,31 @@ export default function CreatePlacePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
       <div className="max-w-2xl mx-auto px-4">
-        <h1 className="text-4xl font-bold mb-8">Create a New Place</h1>
+        <h1 className="text-4xl font-bold mb-8 dark:text-gray-100">Create a New Place</h1>
 
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-8 space-y-6">
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 space-y-6">
           <div>
-            <label className="block text-sm font-medium mb-2">Title</label>
+            <label className="block text-sm font-medium mb-2 dark:text-gray-300">Title</label>
             <input
               type="text"
               name="title"
               value={formData.title}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-gray-100"
               placeholder="Amazing Apartment"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Description</label>
+            <label className="block text-sm font-medium mb-2 dark:text-gray-300">Description</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-gray-100"
               placeholder="Describe your place..."
               rows={4}
             />
@@ -138,13 +138,13 @@ export default function CreatePlacePage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Price per Night</label>
+              <label className="block text-sm font-medium mb-2 dark:text-gray-300">Price per Night</label>
               <input
                 type="number"
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-gray-100"
                 placeholder="150"
                 step="0.01"
                 required
@@ -152,36 +152,36 @@ export default function CreatePlacePage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Currency</label>
+              <label className="block text-sm font-medium mb-2 dark:text-gray-300">Currency</label>
               <input
                 type="text"
                 value="USD"
                 disabled
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
               />
             </div>
           </div>
 
           {/* Location Section with Map */}
           <div>
-            <label className="block text-sm font-medium mb-4">Location</label>
+            <label className="block text-sm font-medium mb-4 dark:text-gray-300">Location</label>
             <MapPicker
               latitude={formData.latitude}
               longitude={formData.longitude}
               onLocationChange={handleLocationChange}
             />
-            <p className="text-xs text-gray-500 mt-2">Click on the map to select location</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Click on the map to select location</p>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Latitude</label>
+              <label className="block text-sm font-medium mb-2 dark:text-gray-300">Latitude</label>
               <input
                 type="number"
                 name="latitude"
                 value={formData.latitude}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-gray-100"
                 placeholder="48.8566"
                 step="0.0001"
                 required
@@ -189,13 +189,13 @@ export default function CreatePlacePage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Longitude</label>
+              <label className="block text-sm font-medium mb-2 dark:text-gray-300">Longitude</label>
               <input
                 type="number"
                 name="longitude"
                 value={formData.longitude}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-gray-100"
                 placeholder="2.3522"
                 step="0.0001"
                 required
@@ -204,13 +204,13 @@ export default function CreatePlacePage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-4">Amenities</label>
+            <label className="block text-sm font-medium mb-4 dark:text-gray-300">Amenities</label>
             {fetchingAmenities ? (
-              <p className="text-gray-500">Loading amenities...</p>
+              <p className="text-gray-500 dark:text-gray-400">Loading amenities...</p>
             ) : (
               <div className="grid grid-cols-2 gap-4">
                 {amenities.map((amenity) => (
-                  <label key={amenity.id} className="flex items-center gap-2 cursor-pointer">
+                  <label key={amenity.id} className="flex items-center gap-2 cursor-pointer dark:text-gray-300">
                     <input
                       type="checkbox"
                       checked={formData.amenity_ids.includes(amenity.id)}

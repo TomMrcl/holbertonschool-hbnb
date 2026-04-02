@@ -38,30 +38,30 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center py-12">
-      <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full mx-4">
-        <h2 className="text-3xl font-bold text-center mb-8">Login</h2>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center py-12">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 max-w-md w-full mx-4">
+        <h2 className="text-3xl font-bold text-center mb-8 dark:text-gray-100">Login</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Email</label>
+            <label className="block text-sm font-medium mb-2 dark:text-gray-300">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-gray-100"
               placeholder="your@email.com"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Password</label>
+            <label className="block text-sm font-medium mb-2 dark:text-gray-300">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-primary dark:bg-gray-700 dark:text-gray-100"
               placeholder="••••••••"
               required
             />
@@ -76,8 +76,8 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="mt-8 pt-8 border-t">
-          <p className="text-center text-sm text-gray-600 mb-4">Demo Credentials:</p>
+        <div className="mt-8 pt-8 border-t dark:border-gray-700">
+          <p className="text-center text-sm text-gray-600 dark:text-gray-400 mb-4">Demo Credentials:</p>
           <button
             type="button"
             onClick={() => fillDemo(true)}
