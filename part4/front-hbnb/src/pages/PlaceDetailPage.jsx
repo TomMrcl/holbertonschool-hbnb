@@ -151,7 +151,7 @@ export default function PlaceDetailPage() {
     }
   };
 
-  const isPlaceOwner = user && user.id && place && place.owner_id === user.id;
+  const canEditPlace = user && user.id && place && (user.is_admin || place.owner_id === user.id);
 
   if (loading) return <LoadingSpinner />;
   if (!place) return <div className="text-center py-12">Place not found</div>;
@@ -162,28 +162,48 @@ export default function PlaceDetailPage() {
       ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
       : 0;
 
+  // Generate image URL based on place title (consistent)
+  const hashString = (str) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash) % 100;
+  };
+
+  const imageId = hashString(place.title);
+  const imageUrl = `https://picsum.photos/1200/400?random=${imageId}`;
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4">
         {/* Place Header */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-          <div className="h-96 bg-gradient-to-br from-primary to-red-400"></div>
+          <div className="h-96 bg-gray-200 overflow-hidden relative">
+            <img
+              src={imageUrl}
+              alt={place.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
           <div className="p-8">
             <div className="flex justify-between items-start mb-4">
               <h1 className="text-4xl font-bold">{place.title}</h1>
-              {isPlaceOwner && (
+              {canEditPlace && (
                 <div className="flex gap-2">
                   <button
                     onClick={() => setShowPlaceFormModal(true)}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium flex items-center gap-2"
+                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium"
                   >
-                    ✏️ Edit
+                    Edit
                   </button>
                   <button
                     onClick={handleDeletePlace}
-                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 font-medium flex items-center gap-2"
+                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 font-medium"
                   >
-                    🗑️ Delete
+                    Delete
                   </button>
                 </div>
               )}
@@ -226,7 +246,7 @@ export default function PlaceDetailPage() {
             <h2 className="text-2xl font-bold">Reviews ({reviews.length})</h2>
             <div className="text-right">
               <div className="text-3xl font-bold text-primary">{avgRating}</div>
-              <div className="text-yellow-500">★ ({reviews.length} reviews)</div>
+              <div className="text-amber-600 font-semibold">Based on {reviews.length} reviews</div>
             </div>
           </div>
 
@@ -291,7 +311,7 @@ export default function PlaceDetailPage() {
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold">{review.user_id?.substring(0, 8) || 'User'}</span>
-                      <span className="text-yellow-500">★ {review.rating}</span>
+                      <span className="text-amber-600 font-semibold">Rating: {review.rating}/5</span>
                     </div>
                     {user && user.id && user.id === review.user_id && (
                       <div className="flex gap-2">

@@ -11,25 +11,29 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold text-primary cursor-pointer" onClick={() => navigate('/')}>
+    <nav className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition" onClick={() => navigate('/')}>
           HBnB
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           {user ? (
             <>
-              <span className="text-gray-700">Welcome, {user.email}</span>
+              <div className="flex flex-col items-end">
+                <p className="text-sm text-gray-500">Logged in as</p>
+                <p className="font-semibold text-gray-900">{user.email}</p>
+              </div>
+              <div className="w-8 h-8 bg-gradient-to-br from-red-400 to-red-600 rounded-full"></div>
               <button
                 onClick={() => navigate('/places/create')}
                 className="btn-primary text-sm"
               >
-                + Create Place
+                Create Place
               </button>
               <button
                 onClick={handleLogout}
-                className="btn-primary text-sm"
+                className="btn-secondary text-sm"
               >
                 Logout
               </button>

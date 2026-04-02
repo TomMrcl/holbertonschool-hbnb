@@ -3,20 +3,41 @@ import { useNavigate } from 'react-router-dom';
 export default function PlaceCard({ place }) {
   const navigate = useNavigate();
 
+  // Generate consistent image URL based on place title
+  const hashString = (str) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash) % 100;
+  };
+
+  const imageId = hashString(place.title);
+  const imageUrl = `https://picsum.photos/500/400?random=${imageId}`;
+
   return (
     <div
       onClick={() => navigate(`/place/${place.id}`)}
-      className="card cursor-pointer"
+      className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
     >
-      <div className="h-48 bg-gradient-to-br from-primary to-red-400"></div>
-      <div className="p-4">
-        <h3 className="font-bold text-lg line-clamp-2">{place.title}</h3>
-        <p className="text-gray-600 text-sm line-clamp-2 my-2">
+      <div className="h-56 bg-gray-200 overflow-hidden relative">
+        <img
+          src={imageUrl}
+          alt={place.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+        />
+      </div>
+      <div className="p-5">
+        <h3 className="font-semibold text-lg line-clamp-2 text-gray-900 mb-2">{place.title}</h3>
+        <p className="text-gray-600 text-sm line-clamp-2 mb-4 leading-relaxed">
           {place.description}
         </p>
-        <div className="flex justify-between items-center mt-4">
-          <span className="text-2xl font-bold text-primary">${place.price}/night</span>
-          <span className="text-sm bg-gray-100 px-3 py-1 rounded">★ 4.8</span>
+        <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+          <span className="text-2xl font-bold text-primary">${place.price}</span>
+          <span className="text-xs font-medium bg-amber-100 text-amber-800 px-3 py-1.5 rounded-full">Rating: 4.8</span>
         </div>
       </div>
     </div>

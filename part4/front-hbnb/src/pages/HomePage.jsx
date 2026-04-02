@@ -34,17 +34,17 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 py-20">
         <div className="grid md:grid-cols-3 gap-8 text-center">
           <div className="p-6">
-            <div className="text-4xl mb-4">🏠</div>
+            <div className="text-5xl mb-4 text-primary font-bold">▦</div>
             <h3 className="font-bold text-xl mb-2">Find Places</h3>
             <p className="text-gray-600">Browse thousands of places to stay in your favorite destinations</p>
           </div>
           <div className="p-6">
-            <div className="text-4xl mb-4">⭐</div>
+            <div className="text-5xl mb-4 text-amber-500 font-bold">◆</div>
             <h3 className="font-bold text-xl mb-2">Read Reviews</h3>
             <p className="text-gray-600">See honest reviews from guests who stayed at each place</p>
           </div>
           <div className="p-6">
-            <div className="text-4xl mb-4">✍️</div>
+            <div className="text-5xl mb-4 text-green-600 font-bold">✓</div>
             <h3 className="font-bold text-xl mb-2">Leave Reviews</h3>
             <p className="text-gray-600">Share your experience and help other travelers decide</p>
           </div>

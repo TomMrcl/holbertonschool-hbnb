@@ -4,7 +4,7 @@ export default function ReviewCard({ review, onDelete }) {
       <div className="flex justify-between items-start mb-2">
         <div className="flex items-center gap-2">
           <span className="font-semibold">{review.user_id?.substring(0, 8) || 'User'}</span>
-          <span className="text-yellow-500">★ {review.rating}</span>
+          <span className="text-amber-600 font-semibold">Rating: {review.rating}/5</span>
         </div>
         {onDelete && (
           <button

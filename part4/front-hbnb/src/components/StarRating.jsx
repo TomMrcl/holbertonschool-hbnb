@@ -21,11 +21,13 @@ export default function StarRating({ onRate, initialRating = 0 }) {
           onClick={() => handleRate(star)}
           onMouseEnter={() => setHovered(star)}
           onMouseLeave={() => setHovered(0)}
-          className={`text-3xl transition ${
-            star <= (hovered || rating) ? 'text-yellow-400' : 'text-gray-300'
+          className={`w-10 h-10 rounded-full text-sm font-bold transition ${
+            star <= (hovered || rating)
+              ? 'bg-amber-500 text-white'
+              : 'bg-gray-300 text-gray-600'
           }`}
         >
-          ★
+          {star}
         </button>
       ))}
     </div>

@@ -26,14 +26,15 @@ export const AuthProvider = ({ children }) => {
       const response = await API.post('/api/v1/auth/login', { email, password });
       const { access_token } = response.data;
 
-      // Decode JWT to get user ID
+      // Decode JWT to get user ID and is_admin flag
       const decoded = jwtDecode(access_token);
       const userId = decoded.sub; // 'sub' is the identity/user_id
+      const isAdmin = decoded.is_admin || false; // Extract is_admin from JWT claims
 
       setToken(access_token);
-      setUser({ email, id: userId });
+      setUser({ email, id: userId, is_admin: isAdmin });
       localStorage.setItem('token', access_token);
-      localStorage.setItem('user', JSON.stringify({ email, id: userId }));
+      localStorage.setItem('user', JSON.stringify({ email, id: userId, is_admin: isAdmin }));
       API.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
 
       return { success: true };
