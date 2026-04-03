@@ -13,13 +13,24 @@ app = create_app(DevelopmentConfig)
 def seed_database():
     """Initialize database with demo data."""
     with app.app_context():
-        # Clear existing data
-        print("[*] Clearing database...")
-        db.drop_all()
+        # Check if database is already seeded
+        existing_users = User.query.count()
+
+        if existing_users > 0:
+            print("[*] Database already contains data. Skipping seeding.")
+            print(f"[*] Current database state:")
+            print(f"    - Users: {User.query.count()}")
+            print(f"    - Amenities: {Amenity.query.count()}")
+            print(f"    - Places: {Place.query.count()}")
+            print(f"    - Reviews: {Review.query.count()}")
+            return
+
+        # Create tables if they don't exist
+        print("[*] Creating database tables...")
         db.create_all()
 
         # Create users
-        print("[*] Creating users...")
+        print("[*] Creating demo users...")
         admin_user = User(
             first_name="John",
             last_name="Doe",
@@ -180,14 +191,6 @@ def seed_database():
         print("\n  OR")
         print("  Email: user@example.com")
         print("  Password: user123")
-
-if __name__ == "__main__":
-    seed_database()
-
-
-if __name__ == "__main__":
-    seed_database()
-
 
 if __name__ == "__main__":
     seed_database()
